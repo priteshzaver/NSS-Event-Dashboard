@@ -6,12 +6,12 @@ import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faFootball } from '@fortawesome/free-solid-svg-icons'
+import { faFootball, faTheaterMasks } from '@fortawesome/free-solid-svg-icons'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 
-library.add(faFootball)
+library.add(faFootball, faTheaterMasks)
 
 const app = createApp(App)
 
