@@ -1,21 +1,25 @@
 <script setup>
-import { numberOfTheaterResults, theaterSearchResults } from '../store/eventStore'
 import Card from 'primevue/card'
+
+const props = defineProps(['event'])
 </script>
 
 <template>
   <Card class="flex flex-column align-items-center">
     <template #header>
       <div class="mt-2">
-        <font-awesome-icon icon="masks-theater" style="font-size: 2.5rem"></font-awesome-icon>
+        <font-awesome-icon
+          :icon="`${props.event.icon}`"
+          style="font-size: 2.5rem"
+        ></font-awesome-icon>
       </div>
     </template>
     <template #content>
       <div class="text-5xl flex justify-content-center">
-        {{ numberOfTheaterResults }}
+        {{ props.event.total }}
       </div>
     </template>
-    <template #footer> Theater Events </template>
+    <template #footer> {{ props.event.title }} </template>
   </Card>
 </template>
 
