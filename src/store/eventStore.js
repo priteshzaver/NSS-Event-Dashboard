@@ -6,21 +6,21 @@ export const sportsSearchResults = ref([])
 export const theaterSearchResults = ref([])
 export const concertSearchResults = ref([])
 
-export const numberOfEvents = ref([
+export const searchResults = ref([
   {
     title: 'Sporting Events',
-    total: 0,
-    icon: 'football'
+    icon: 'football',
+    data: []
   },
   {
     title: 'Theater Events',
-    total: 0,
-    icon: 'masks-theater'
+    icon: 'masks-theater',
+    data: []
   },
   {
     title: 'Concert Events',
-    total: 0,
-    icon: 'music'
+    icon: 'music',
+    data: []
   }
 ])
 
@@ -29,17 +29,17 @@ export const isFetching = ref(false)
 export const searchSports = async (selectedDates) => {
   isFetching.value = true
 
-  const url = `https://api.seatgeek.com/2/events?taxonomies.name=sports&taxonomies.name=theater&taxonomies.name=concert&client_id=${apiKey}&venue.city=nashville&venue.state=TN&sort=score.desc&datetime_local.gte=${selectedDates.startDate}&datetime_local.lte=${selectedDates.endDate}&per_page=50`
+  const url = `https://api.seatgeek.com/2/events?taxonomies.name=sports&taxonomies.name=theater&taxonomies.name=concert&client_id=${apiKey}&venue.city=nashville&venue.state=TN&sort=datetime_local.asc&datetime_local.gte=${selectedDates.startDate}&datetime_local.lte=${selectedDates.endDate}&per_page=50`
   const res = await fetch(url)
   const data = await res.json()
 
-  sportsSearchResults.value = data.events.filter((event) => event.taxonomies[0].name === 'sports')
-  theaterSearchResults.value = data.events.filter((event) => event.taxonomies[0].name === 'theater')
-  concertSearchResults.value = data.events.filter((event) => event.taxonomies[0].name === 'concert')
-
-  numberOfEvents.value[0].total = sportsSearchResults.value.length
-  numberOfEvents.value[1].total = theaterSearchResults.value.length
-  numberOfEvents.value[2].total = concertSearchResults.value.length
+  searchResults.value[0].data = data.events.filter((event) => event.taxonomies[0].name === 'sports')
+  searchResults.value[1].data = data.events.filter(
+    (event) => event.taxonomies[0].name === 'theater'
+  )
+  searchResults.value[2].data = data.events.filter(
+    (event) => event.taxonomies[0].name === 'concert'
+  )
 
   isFetching.value = false
 }

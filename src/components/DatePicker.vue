@@ -11,9 +11,7 @@ const selectedDates = (date) => {
 </script>
 
 <template>
-  <div>
-    <Calendar v-model="dates" selection-mode="range" inline @date-select="selectedDates(dates)" />
-  </div>
+  <Calendar v-model="dates" selection-mode="range" inline @date-select="selectedDates(dates)" />
 </template>
 
 <style scoped></style>
