@@ -16,7 +16,7 @@ const props = defineProps(['event'])
     </template>
     <template #content>
       <div class="text-5xl flex justify-content-center">
-        {{ props.event.total }}
+        {{ props.event.data.length }}
       </div>
     </template>
     <template #footer> {{ props.event.title }} </template>
