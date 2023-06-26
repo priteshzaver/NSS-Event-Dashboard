@@ -15,6 +15,7 @@ const selectedDates = (date) => {
     v-model="dates"
     selection-mode="range"
     inline
+    class="shadow-5"
     @date-select="selectedDates(dates)"
     :pt="{
       root: { class: 'w-full' },

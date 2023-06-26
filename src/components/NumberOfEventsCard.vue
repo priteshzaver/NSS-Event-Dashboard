@@ -6,7 +6,7 @@ const props = defineProps(['event'])
 
 <template>
   <Card
-    class="flex flex-column align-items-center"
+    class="flex flex-column align-items-center shadow-5"
     :pt="{
       root: { class: 'bg-primary' },
       content: { class: 'flex justify-content-center text-5xl font-semibold' }
