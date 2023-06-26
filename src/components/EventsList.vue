@@ -1,38 +1,38 @@
 <script setup>
-import Card from 'primevue/card'
-import ScrollPanel from 'primevue/scrollpanel'
-import EventsListItem from './EventsListItem.vue'
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
 
 const props = defineProps(['event'])
 </script>
 
 <template>
-  <Card class="my-3">
-    <template #title> All {{ props.event.title }}</template>
-    <template #content>
-      <div class="grid border-bottom-3">
-        <div class="col">
-          <div>Event</div>
-        </div>
-        <div class="col">
-          <div>Venue</div>
-        </div>
-        <div class="col">
-          <div>Date</div>
-        </div>
-        <div class="col">
-          <div>Price</div>
-        </div>
-      </div>
-      <div class="flex flex-column">
-        <ScrollPanel style="width: 100%; height: 8rem">
-          <div v-for="eachEvent in props.event.data" :key="eachEvent.id">
-            <EventsListItem :eachEvent="eachEvent" />
-          </div>
-        </ScrollPanel>
-      </div>
-    </template>
-  </Card>
+  <DataTable
+    :value="props.event.data"
+    scrollable
+    scrollHeight="15rem"
+    class="shadow-5 mb-4"
+    :pt="{ header: { class: 'bg-primary' } }"
+  >
+    <template #header> All {{ props.event.title }}</template>
+    <Column field="title" header="Event" :pt="{ headerCell: { class: 'bg-blue-200' } }"></Column>
+    <Column
+      field="venue.name"
+      header="Venue"
+      :pt="{ headerCell: { class: 'bg-blue-200' } }"
+    ></Column>
+    <Column
+      field="datetime_local"
+      header="Date"
+      :pt="{ headerCell: { class: 'bg-blue-200' } }"
+    ></Column>
+    <Column header="Price" :pt="{ headerCell: { class: 'bg-blue-200' } }">
+      <template #body="slotProps">
+        <a :href="`${slotProps.data.url}`" target="_blank" rel="noopener noreferrer">
+          ${{ slotProps.data.stats.lowest_price }} - ${{ slotProps.data.stats.highest_price }}
+        </a>
+      </template>
+    </Column>
+  </DataTable>
 </template>
 
 <style scoped></style>
