@@ -40,7 +40,7 @@ const setDates = (selectedDates) => {
             <NumberOfEventsCard :event="event" />
           </div>
         </div>
-        <div>
+        <div class="mt-6">
           <DatePicker @selectedDates="setDates" />
         </div>
       </div>
