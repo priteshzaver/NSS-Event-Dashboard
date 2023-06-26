@@ -5,21 +5,22 @@ const props = defineProps(['event'])
 </script>
 
 <template>
-  <Card class="flex flex-column align-items-center">
+  <Card
+    class="flex flex-column align-items-center"
+    :pt="{
+      root: { class: 'bg-primary' },
+      content: { class: 'flex justify-content-center text-5xl font-semibold' }
+    }"
+  >
     <template #header>
-      <div class="mt-2">
-        <font-awesome-icon
-          :icon="`${props.event.icon}`"
-          style="font-size: 2.5rem"
-        ></font-awesome-icon>
-      </div>
+      <font-awesome-icon :icon="`${props.event.icon}`" size="3x" class="mt-2"></font-awesome-icon>
     </template>
     <template #content>
-      <div class="text-5xl flex justify-content-center">
-        {{ props.event.data.length }}
-      </div>
+      {{ props.event.data.length }}
     </template>
-    <template #footer> {{ props.event.title }} </template>
+    <template #footer>
+      {{ props.event.title }}
+    </template>
   </Card>
 </template>
 
